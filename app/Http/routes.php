@@ -10,14 +10,15 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('test',['as'=>'posts.show',function()
+/*
+Route::get('test',['as'=>'test.show',function()
 {
 	return 'TEST';
 }]);
 
 Route::get('test2',function()
 {
-	return 'posts.show';
+	return 'test.show';
 });
 
 Route::pattern('id','[0-9]+');
@@ -53,6 +54,42 @@ Route::get('users/{naame?}',function($name=null)
 	}
 	return $str;
 });
+
+
+Route::get('test',['as'=>'test.show',function()
+{
+	return 'TEST';
+}]);
+
+Route::get('test2',function()
+{
+	return route('test.show');
+});
+*/
+Route::get('/',['as'=>'posts.index',function()
+{
+	return  view('posts.index');
+}]);
+
+Route::get('show/{id}',['as'=>'posts.show',function($id)
+{
+	$data=[
+		'id' => $id,
+	];
+	return  view('posts.show',$data);
+}]);
+
+Route::get('about',['as'=>'about.index',function()
+{
+	return view('about.index');
+}]);
+
+Route::get('contact',['as'=>'contact.index',function()
+{
+	return view('contact.index');
+}]);
+
+
 /*
 Route::get('/', 'WelcomeController@index');
 
